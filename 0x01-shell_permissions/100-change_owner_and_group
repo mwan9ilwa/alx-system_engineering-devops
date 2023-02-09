@@ -1,2 +1,2 @@
 #!/bin/bash
-chown betty vincent chgrp stuff
+chown vincent chgrp stuff
