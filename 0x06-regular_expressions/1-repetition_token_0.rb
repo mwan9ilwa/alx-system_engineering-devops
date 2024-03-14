@@ -1,2 +1,3 @@
 #!/usr/bin/env ruby
-puts ARGV[0].scan(/hbt{2,5}n/).join
+#Matches case of repetition of given letters
+puts ARGV[0].scan(/hbt{2,5}n$/).join
