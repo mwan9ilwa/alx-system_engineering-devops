@@ -1,54 +1,25 @@
 #!/usr/bin/env bash
-# Configure your Nginx server so that /redirect_me is redirecting to another page.
-# Handle 404 errors
+# Customizing a 404-error_page
 
-# Update and Install nginx
-sudo apt -y update
-sudo apt -y install nginx
+# Updating Packages before performing installations
+sudo apt-get update
+sudo apt-get install -y nginx
 
-# Remove and replace /var/www to store static content
-# Created /var/www/school/errors to store 404 error message
+# Creating an index.html page
+echo "Hello World!" | sudo tee /var/www/html/index.html
 
-rm -rf school
-mkdir school
-mkdir school/errors
-touch 404.html
-echo "Ceci n'est pas une page" > school/errors/404.html
+# Performing a "moved permanently redirection" (301)
+new_string="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/besthor permanent;"
+sudo sed -i "s/server_name _;/$new_string/" /etc/nginx/sites-enabled/default
 
-touch school/index.html
-echo "Hello World!" > school/index.html
+# Creating a 404 Custom error page
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+new_string="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
 
-sudo rm -rf /var/www/school
-sudo mv school /var/www/
+sudo sed -i "s/listen 80 default_server;/$new_string/" /etc/nginx/sites-enabled/default
 
-# Change the default configuration of nginx
-# Add redirection for localhost/redirect_me
-# Return  404.html in case of a 404 error (page not found)
+# Testing configurations for syntax errors
+sudo nginx -t
 
-touch default
-printf %s "server {
-        listen 80;
-        listen [::]:80;
-
-        root /var/www/school;
-        index index.html;
-
-        location /redirect_me {
-            return 301 https://youtube.com;
-        }
-
-        error_page 404 /404.html;
-        location = /404.html {
-            root /var/www/school/errors/;
-        }
-}
-" > default
-
-# Remove and replace existing configurations
-sudo rm -rf /etc/nginx/sites-available/default
-sudo rm -rf /etc/nginx/sites-enabled/default
-sudo mv default /etc/nginx/sites-available/
-sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-
-# Restart nginx
+# restart nginx after implementing changes
 sudo service nginx restart
