@@ -1,0 +1,39 @@
+What Happens When You Type “https://www.google.com” in Your Browser and Press Enter?
+Tshepiso MAfuyeka
+tshepisoroshina@gmail.com
+
+Introduction:
+
+let’s establish a common understanding: A web browser is a software application that you use to access the internet. Familiar examples include Chrome, Firefox, Safari, and Edge. Now, fasten your seatbelt, and let’s take this informative journey together.
+In the age of the internet, we often take for granted the seamless experience of typing a URL into our browser and instantly accessing the desired website. Behind the scenes, however, a complex series of steps unfold to fulfill our request. In this article, we'll dive into the journey of a web request, from the moment we type "https://www.google.com" into our browser and press Enter.
+
+Here is a brief explanation of what happens
+
+DNS Request:
+The journey begins with a Domain Name System (DNS) request. When we type a URL like "www.google.com," our browser first needs to translate this human-readable domain name into an IP address, which is the unique identifier of the server hosting the website.
+
+TCP/IP:
+Once the browser obtains the IP address of the destination server through DNS resolution, it establishes a connection using the Transmission Control Protocol (TCP) over the Internet Protocol (IP). TCP ensures reliable communication by breaking data into packets, numbering them for sequencing, and handling error correction and retransmission if necessary.
+
+Firewall:
+As the TCP/IP packets traverse the internet, they may encounter firewalls, which act as barriers to protect networks from unauthorized access and malicious activity. Firewalls inspect incoming and outgoing traffic based on predefined rules and policies, allowing or blocking packets accordingly.
+
+Firewall:
+As the TCP/IP packets traverse the internet, they may encounter firewalls, which act as barriers to protect networks from unauthorized access and malicious activity. Firewalls inspect incoming and outgoing traffic based on predefined rules and policies, allowing or blocking packets accordingly.
+
+HTTPS/SSL:
+In our example, the URL "https://www.google.com" indicates that the connection to the Google server is secured using the Hypertext Transfer Protocol Secure (HTTPS) protocol. HTTPS encrypts data exchanged between the browser and the server using Secure Socket Layer (SSL) or Transport Layer Security (TLS) encryption protocols.
+
+Load-Balancer:
+Upon reaching Google's server infrastructure, the incoming request may encounter a load balancer. Load balancers distribute incoming traffic across multiple servers to optimize resource utilization, improve scalability, and enhance fault tolerance.
+
+Web Server:
+Once the request is routed to a specific server, it is processed by a web server, such as Apache HTTP Server or Nginx. The web server receives the request, retrieves the requested resources, such as HTML, CSS, JavaScript, and images, from the server's filesystem or database, and generates an HTTP response to send back to the client.
+
+Application Server:
+In the case of dynamic web applications, the web server may delegate certain processing tasks to an application server, such as Node.js, Django, or Ruby on Rails. The application server executes application logic, interacts with databases, and generates dynamic content based on user inputs and business logic.
+
+Database:
+If the web application requires data retrieval or storage, it may interact with a database server, such as MySQL, PostgreSQL, or MongoDB. The application server sends queries to the database server to retrieve or update data, which is then processed and presented to the user through the web interface.
+
+the journey of a web request from typing "https://www.google.com" to rendering the Google homepage involves a complex interplay of technologies and infrastructure components. Understanding this process provides valuable insight into the inner workings of the internet and enables us to appreciate the seamless experience of browsing the web.
