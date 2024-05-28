@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+#lets get mysql installed on web-01 and web-02
+GPG_kEY="
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: SKS 1.1.6
+Comment: Hostname: pgp.mit.edu
+
+b3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jdHIAAAAGYmNyeXB0AAAAGAAAABCZuaB6sK
+YAHgpPKrkFfAZXAAAAEAAAAAEAAAEXAAAAB3NzaC1yc2EAAAADAQABAAABAQDPfIaT0DkU
+4RqWwSYsH03N1GmnrDZ46ZoRrLktZZhCcTbZzBe/i1gXZA2EY5/a/xdkk9BICUkz/2/WaD
+wlpCdFok09C+Yi37csMwi/JoG+GIf69L1QTMWAX6uTAk7PiOPY0hJLB+XnZ3SSqL3L9Xhl
+7zt7zy7QR89uczF7hTvq4KtzmA8jJTdhoSF5nK2+SiYG6YH7o3p43iHq+2kSQgjqzLkEMx
+GpXPgxTaFZp8gImRvIKFFOB1JbOuaEXgCLS/ApfkIb0QFY7+6ZnnbwYqnsLjN44Gx3PQz7
+6eHa4r5Ee7N8F2iGDpiPU89XcLXceqEWGD2P4mqVggi5lempFp67AAAD0L6pHcCK6eY5ac
+nvFFg2O/15kVYnpU/SFKxx+OWw96OcIUuVsL+S8b1/o7VLy0upWJirHTdqstOiMkiZhUfb
+GujKK01avUoLp1nAUpcBsMM0+c9q2rIibxixnZcCT2WiVqL1t7g1TfAKaA2pz1t6AF+OtH
+obJKi04ddCqfnoq7m37PioFPbF5/mjpF/Mi1rbc4Ifb9RKgt4FhnLoGw5oNxgHMkg/T6z/
+BcT2o4IlJwmNFAZMMu0bzdmALl+9dlmnIcY0dvnJsu9DYF1Ws90jA/LsRulUDbOfAdw2qy
+V7HYqxFue4GEXoRBAL1rEqFMUavcK3+Y7/WKhsiKbL4Exo9goCKP0khOJr0wN+N2lTbPUW
+sDOhYUq38AASyHsnYq3xmmpqVG/Z6nF+HM/V+M4RbS3Qe2cOJmY3y7+9deiH1VP6Xn6BY+
+k8txAgqDz1AVugSH+djd2/TXauaMyaB2cyIBJup5ZK7fa4eTXFff8VnA8ztCC/oxUBOB0L
+s47zx33wuuij1nRFEQHrJx4rArwk4BDoyqxdyoMARjWGMw00CmUKv3k9S3QA7ku99wAKoy
+CWwiirJqI0TkEnjqCDJL6jATc2v3AdCjd84gLTW+WnhdXagSLloNlO9WUjA16REmRESkCL
+FZw1EQbaXXkxmIygH5Q4+P3RPh+pw4f/Bf9eIdoEZZXucKY8xPooDndgiO4y88mFXWuTdE
+X8Ou/EXLo9rW/PA1ByshCHUABLmhkbUcUD9XcPbEAK2IWBhyxf32+TE2MjfSOMCDYq3L5X
+1dM/fcJTML1Up6v4uCfaQnlpBjxwc7yhN/Oo8jE9O2FkyriR0J2n70hX3Sy6aHnaYazxFw
+OuMOZIZhBrhQBYSG3s3Jxcj+tXPDCpKVpNkAXSmjP+RjyD0CN8HxPrCuAW+Sda5ed1wp6u
+XryQtsNag0fYgXxNXSm7utqfE/yH9OQziZ2xY0/9eTnApsOuBEJa38R/kJCX6i23e77c5Q
+4+6LMnxmsj8zr8JMdpvRKwSJEVWx4QRb2utFNTCu7wKcHYOAvks4zN6hQOVcRHDp3b9/Nc
+QukJvFvr7ySBrQn8ifCxePemVTJ3z0P6pth6qZzbIVjJ5bTzj7AxUjwbXoAAAt/VXExquw
+jxmqLn48eOgnNupNl0sszBxryx1e8a5vh5tSSRhqZXydTdSGAx9jF/75MdKA71oSAcoVIW
+bwoJkZUNEvtgoH7OoO7i4nFRrZhOcMysUsriphPvCaK1c/tJzsg5RmZ0rJEtgAMMTb1Qma
+zroQyN4GTGVcs1kauU/UqBx+PVWWU=
+-----END PGP PUBLIC KEY BLOCK-----
+"
+echo -e $GPG_kEY > signature.key
+sudo apt-key add signature.key
+sudo sh -c 'echo "deb http://repo.mysql.com/apt/ubuntu bionic mysql-5.7" >> /etc/apt/sources.list.d/mysql.list'
+sudo apt-get  -y update
+sudo apt install -f mysql-client=5.7* mysql-community-server=5.7* mysql-server=5.7*
