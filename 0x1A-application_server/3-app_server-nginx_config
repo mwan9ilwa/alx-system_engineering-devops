@@ -6,7 +6,7 @@ server {
         add_header X-Served-By $HOSTNAME;
 
         # Use server IP as domain name
-        server_name 107.23.94.198;
+        server_name 54.160.80.16;
 
         # Serve /airbnb-onepage/ route from AirBnB_clone_v2
         location = /airbnb-onepage/ {
